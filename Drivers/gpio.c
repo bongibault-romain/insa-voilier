@@ -18,6 +18,7 @@ void GPIO_Enable(GPIO_TypeDef *name) {
 
 void GPIO_Set_Config(GPIO_TypeDef *name, char port, enum gpio_mode mode, enum gpio_cnf config) {
 	assert(port >= 0 && port < 16);
+	assert(mode != INPUT || config != 3);
 	
 	 __IO uint32_t *portRegister = &(name->CRL);
 	

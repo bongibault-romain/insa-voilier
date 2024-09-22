@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -389,11 +389,6 @@
               <FileType>1</FileType>
               <FilePath>.\Application\principal.c</FilePath>
             </File>
-            <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\gpio.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -407,6 +402,16 @@
         </Group>
         <Group>
           <GroupName>TPUART</GroupName>
+        </Group>
+        <Group>
+          <GroupName>Drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\gpio.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
@@ -739,7 +744,7 @@
             <uC99>0</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
-            <v6Lang>4</v6Lang>
+            <v6Lang>0</v6Lang>
             <v6LangP>3</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
@@ -750,7 +755,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -799,11 +804,6 @@
               <FileType>1</FileType>
               <FilePath>.\Application\principal.c</FilePath>
             </File>
-            <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\gpio.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -817,6 +817,16 @@
         </Group>
         <Group>
           <GroupName>TPUART</GroupName>
+        </Group>
+        <Group>
+          <GroupName>Drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\gpio.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

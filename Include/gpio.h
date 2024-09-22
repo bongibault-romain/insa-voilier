@@ -7,8 +7,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define GPIO_RESET = 0
-
 // See: Le manuel de référence STM32 (RM0008) 
 // | 9.2.1 Port configuration register low (GPIOx_CRL) (x=A..G) 
 // | 9.2.2 Port configuration register high (GPIOx_CRH) (x=A..G)
