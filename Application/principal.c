@@ -4,9 +4,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-int main ( void )
+int main (void)
 {
-	RCC->APB2ENR |= (0x01 << 2) | (0x01 << 3) | (0x01 << 4); // 0x11100 -> 28
+	GPIO_Enable(GPIOA);
+	GPIO_Enable(GPIOB);
+	GPIO_Enable(GPIOC);
 	
 	GPIOA->CRL &= ~(0xF<<4);
 	GPIOA->CRL |= (0x2<<4);

@@ -13,6 +13,16 @@
 // | 9.2.1 Port configuration register low (GPIOx_CRL) (x=A..G) 
 // | 9.2.2 Port configuration register high (GPIOx_CRH) (x=A..G)
 
+enum gpio_type {
+	GPIO_A = 2,
+	GPIO_B = 3,
+	GPIO_C = 4,
+	GPIO_D = 5,
+	GPIO_E = 6,
+	GPIO_F = 7,
+	GPIO_G = 8
+};
+
 enum gpio_mode {
 	INPUT = 0,
 	OUTPUT_10MHZ = 1,
@@ -31,11 +41,14 @@ enum gpio_cnf {
 	O_ALTERNATE_GPO_OPEN_DRAIN = 3,
 };
 
-void GPIO_Set_Config(GPIO_TypeDef *name, int port, enum gpio_mode mode, enum gpio_cnf config);
-void GPIO_Reset_Config(GPIO_TypeDef *name, int port);
+void GPIO_Enable(GPIO_TypeDef *name);
 
-bool GPIO_Get(GPIO_TypeDef *name, int port);
-void GPIO_Set(GPIO_TypeDef *name, int port, bool value);
+void GPIO_Set_Config(GPIO_TypeDef *name, char port, enum gpio_mode mode, enum gpio_cnf config);
+void GPIO_Reset_Config(GPIO_TypeDef *name, char port);
+
+bool GPIO_Get(GPIO_TypeDef *name, char port);
+void GPIO_Set(GPIO_TypeDef *name, char port, bool value);
+void GPIO_Toggle(GPIO_TypeDef *name, char port);
 
 
 #endif
