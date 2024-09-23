@@ -15,10 +15,7 @@ enum gpio_type {
 	GPIO_A = 2,
 	GPIO_B = 3,
 	GPIO_C = 4,
-	GPIO_D = 5,
-	GPIO_E = 6,
-	GPIO_F = 7,
-	GPIO_G = 8
+	GPIO_D = 5
 };
 
 enum gpio_mode {
