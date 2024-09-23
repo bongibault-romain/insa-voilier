@@ -411,6 +411,11 @@
               <FileType>1</FileType>
               <FilePath>.\Drivers\gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\timer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -825,6 +830,11 @@
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Drivers\gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\timer.c</FilePath>
             </File>
           </Files>
         </Group>
