@@ -1,11 +1,13 @@
 
 #include "stm32f10x.h"
 #include "gpio.h"
+#include "timer.h"
 
 #include <stdio.h>
 #include <stdbool.h>
-int led=1;
-int timer=0;
+
+unsigned short compteur = 0;
+
 int main (void)
 {
 	GPIO_Enable(GPIOA);
@@ -15,12 +17,8 @@ int main (void)
 	GPIO_Set_Config(GPIOA, 5, OUTPUT_2MHZ, O_GPO_PUSH_PULL);
 	GPIO_Set_Config(GPIOC, 10, OUTPUT_2MHZ, O_GPO_PUSH_PULL);
 	
-	
-	RCC->APB2ENR &= 1 ;
-	TIM2->PSC |= 1;
-	TIM2->ARR|=1;
-	
-	
+	Timer_Enable(TIM2, 548, 65535);
+	Timer_Start(TIM2);
 	
 	
 	/* Tests for GPIO Driver */
@@ -47,10 +45,8 @@ int main (void)
 	
 	while (1)
 	{
-		
-		
-		led = GPIO_Get(GPIOA,5);
 		GPIO_Set(GPIOA, 5, GPIO_Get(GPIOC, 13));
 		GPIO_Set(GPIOC, 10, GPIO_Get(GPIOC, 8));
+		compteur = TIM2->CNT;
 	}
 }
