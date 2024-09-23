@@ -4,7 +4,8 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-
+int led=1;
+int timer=0;
 int main (void)
 {
 	GPIO_Enable(GPIOA);
@@ -13,6 +14,10 @@ int main (void)
 	
 	GPIO_Set_Config(GPIOA, 5, OUTPUT_2MHZ, O_GPO_PUSH_PULL);
 	GPIO_Set_Config(GPIOC, 10, OUTPUT_2MHZ, O_GPO_PUSH_PULL);
+	
+	
+	
+	
 	
 	/* Tests for GPIO Driver */
 	/*
@@ -38,6 +43,10 @@ int main (void)
 	
 	while (1)
 	{
+		timer=TIM4->TIMx_CNT;
+		
+		
+		led = GPIO_Get(GPIOA,5);
 		GPIO_Set(GPIOA, 5, GPIO_Get(GPIOC, 13));
 		GPIO_Set(GPIOC, 10, GPIO_Get(GPIOC, 8));
 	}
