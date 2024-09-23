@@ -16,7 +16,8 @@ int main (void)
 	GPIO_Set_Config(GPIOC, 10, OUTPUT_2MHZ, O_GPO_PUSH_PULL);
 	
 	
-	
+	RCC->APB2ENR |= 1 << 2;
+	TIM2->TIM2_CR1 |= 1;
 	
 	
 	/* Tests for GPIO Driver */
@@ -43,7 +44,6 @@ int main (void)
 	
 	while (1)
 	{
-		timer=TIM4->TIMx_CNT;
 		
 		
 		led = GPIO_Get(GPIOA,5);
