@@ -11,6 +11,7 @@
 // | 9.2.1 Port configuration register low (GPIOx_CRL) (x=A..G) 
 // | 9.2.2 Port configuration register high (GPIOx_CRH) (x=A..G)
 
+
 enum gpio_mode {
 	INPUT = 0,
 	OUTPUT_10MHZ = 1,
