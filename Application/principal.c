@@ -16,8 +16,11 @@ int main (void)
 	GPIO_Set_Config(GPIOC, 10, OUTPUT_2MHZ, O_GPO_PUSH_PULL);
 	
 	
-	RCC->APB2ENR |= 1 << 2;
-	TIM2->TIM2_CR1 |= 1;
+	RCC->APB2ENR &= 1 ;
+	TIM2->PSC |= 1;
+	TIM2->ARR|=1;
+	
+	
 	
 	
 	/* Tests for GPIO Driver */
