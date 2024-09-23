@@ -11,16 +11,7 @@
 // | 9.2.1 Port configuration register low (GPIOx_CRL) (x=A..G) 
 // | 9.2.2 Port configuration register high (GPIOx_CRH) (x=A..G)
 
-<<<<<<< HEAD
-enum gpio_type {
-	GPIO_A = 2,
-	GPIO_B = 3,
-	GPIO_C = 4,
-	GPIO_D = 5
-};
 
-=======
->>>>>>> a3b4b952d10df0183022d0b2eab47d0d4fd2bcc4
 enum gpio_mode {
 	INPUT = 0,
 	OUTPUT_10MHZ = 1,
