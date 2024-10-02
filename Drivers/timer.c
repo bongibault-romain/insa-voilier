@@ -18,3 +18,16 @@ void Timer_Start(TIM_TypeDef *name) {
 void Timer_Stop(TIM_TypeDef *name) {
 	name->CR1 &= ~(1);
 }
+
+void Timer_Active_IT(TIM_TypeDef *timer, uint32_t priority) {
+	timer->DIER |= 0b1; // Active interuption dans la carte
+	
+	__NVIC_SetPriority(TIM2_IRQn, priority);
+	__NVIC_EnableIRQ(TIM2_IRQn); // Enable interuption in cortex
+	
+}
+
+void TIM2_IRQHandler() {
+	TIM2->SR &= ~0b1;
+	return;
+}

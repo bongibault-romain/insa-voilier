@@ -17,17 +17,45 @@ void GPIO_Enable(GPIO_TypeDef *name) {
 }
 
 void GPIO_Set_Config(GPIO_TypeDef *name, char port, enum gpio_mode mode, enum gpio_cnf config) {
+	/* 
+	name : {GPIOA,GPIOB,GPIOC,GPIOD}
+	
+	port = num de pin : 0 a 15 
+	
+	mode = type custom : {INPUT = 0,
+	OUTPUT_10MHZ = 1,
+	OUTPUT_2MHZ = 2,
+	OUTPUT_50MHZ = 3
+	}
+	
+	config = type custom : {
+	I_ANALOG = 0,
+	I_FLOATING_INPUT = 1,
+	I_PULL_UP_PULL_DOWN = 2,
+	
+	O_GPO_PUSH_PULL = 0,
+	O_GPO_OPEN_DRAIN = 1,
+	O_ALTERNATE_GPO_PUSH_PULL = 2,
+	O_ALTERNATE_GPO_OPEN_DRAIN = 3,
+	}	
+	*/
+	
 	assert(port >= 0 && port < 16);
+	// Eviter un mode impossible
 	assert(mode != INPUT || config != 3);
 	
+	// Faire le choix entre le LOW et le HIGH Register 
 	 __IO uint32_t *portRegister = &(name->CRL);
-	
 	if (port >= 8) {
 		portRegister = &(name->CRH);
 		port = port - 8;
 	}
 	
-	(*portRegister) &= ~(15 << (4 * port));
+	// Réinitialisation des 4 bits de configuration pour le port
+	(*portRegister) &= ~(0b1111 << (4 * port));
+	
+	// Concatenation des bits de mode et de config
+	// Puis application des bits dans la configuration
 	(*portRegister) |= (mode + (config << 2)) << (4 * port);
 }
 
