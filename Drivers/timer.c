@@ -10,24 +10,52 @@ void Timer_Enable(TIM_TypeDef *name, unsigned short psc, unsigned short arr) {
 	name->ARR = arr;	
 }
 
-
 void Timer_Start(TIM_TypeDef *name) {
-	name->CR1 |= 1;
+	name->CR1 |= TIM_CR1_CEN;
 }
 
 void Timer_Stop(TIM_TypeDef *name) {
-	name->CR1 &= ~(1);
+	name->CR1 &= ~TIM_CR1_CEN;
 }
 
 void Timer_Active_IT(TIM_TypeDef *timer, uint32_t priority) {
-	timer->DIER |= 0b1; // Active interuption dans la carte
+	timer->DIER |= TIM_DIER_UIE; // Active interuption dans la carte
 	
-	__NVIC_SetPriority(TIM2_IRQn, priority);
-	__NVIC_EnableIRQ(TIM2_IRQn); // Enable interuption in cortex
+	if (timer == TIM1) {
+		__NVIC_SetPriority(TIM1_UP_IRQn, priority);
+		__NVIC_EnableIRQ(TIM2_IRQn); // Enable interuption in cortex
+	}
+	
+	if (timer == TIM2) {
+		__NVIC_SetPriority(TIM2_IRQn, priority);
+		__NVIC_EnableIRQ(TIM2_IRQn); // Enable interuption in cortex
+	}
+	
+	
+	if (timer == TIM3) {
+		__NVIC_SetPriority(TIM3_IRQn, priority);
+		__NVIC_EnableIRQ(TIM3_IRQn); // Enable interuption in cortex
+	}
+	
+	if (timer == TIM4) {
+		__NVIC_SetPriority(TIM4_IRQn, priority);
+		__NVIC_EnableIRQ(TIM4_IRQn); // Enable interuption in cortex
+	}
+}
+
+void TIM1_UP_IRQHandler() {
 	
 }
 
 void TIM2_IRQHandler() {
 	TIM2->SR &= ~0b1;
 	return;
+}
+
+void TIM3_IRQHander() {
+
+}
+
+void TIM4_IRQHandler() {
+
 }
