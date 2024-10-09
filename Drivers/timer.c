@@ -31,3 +31,24 @@ void TIM2_IRQHandler() {
 	TIM2->SR &= ~0b1;
 	return;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

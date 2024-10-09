@@ -10,4 +10,6 @@ void Timer_Stop(TIM_TypeDef *name);
 
 void Timer_Active_IT(TIM_TypeDef *timer, uint32_t priority);
 
+void MyTimer_PWM(TIM_TypeDef * Timer, char Channel);
+
 #endif
