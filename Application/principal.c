@@ -6,7 +6,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-unsigned short compteur = 0;
+void test1() {
+	return;
+}
 
 int main (void)
 {
@@ -17,9 +19,9 @@ int main (void)
 	GPIO_Set_Config(GPIOA, 5, OUTPUT_2MHZ, O_GPO_PUSH_PULL);
 	GPIO_Set_Config(GPIOC, 10, OUTPUT_2MHZ, O_GPO_PUSH_PULL);
 	
-	Timer_Enable(TIM2, 548, 65535);
-	Timer_Start(TIM2);
-	
+	Timer_Enable(TIM1, 548, 65535);
+	Timer_Active_IT(TIM1, 1, test1);
+	Timer_Start(TIM1);
 	
 	/* Tests for GPIO Driver */
 	/*
@@ -43,12 +45,10 @@ int main (void)
 	GPIO_Set_Config(GPIOB, 14, OUTPUT_50MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 	*/
 	
-	Timer_Active_IT(TIM2, 1, NULL);
-	
 	while (1)
 	{
 		GPIO_Set(GPIOA, 5, GPIO_Get(GPIOC, 13));
 		GPIO_Set(GPIOC, 10, GPIO_Get(GPIOC, 8));
-		compteur = TIM2->CNT;
 	}
 }
+

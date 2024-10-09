@@ -30,7 +30,7 @@ void Timer_Active_IT(TIM_TypeDef *timer, uint32_t priority, void (*callback) (vo
 	if (timer == TIM1) {
 		TIM1_UP_CALLBACK = callback;
 		__NVIC_SetPriority(TIM1_UP_IRQn, priority);
-		__NVIC_EnableIRQ(TIM2_IRQn); // Enable interuption in cortex
+		__NVIC_EnableIRQ(TIM1_UP_IRQn); // Enable interuption in cortex
 	}
 	
 	if (timer == TIM2) {
@@ -69,7 +69,7 @@ void TIM2_IRQHandler() {
 	return;
 }
 
-void TIM3_IRQHander() {
+void TIM3_IRQHandler() {
 	if (TIM3->SR & TIM_SR_UIF) { // Si c'est une UPDATE Interuption
 		if (TIM3_UP_CALLBACK != NULL) TIM3_UP_CALLBACK();
 		
