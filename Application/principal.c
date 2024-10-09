@@ -20,6 +20,7 @@ int main (void)
 	Timer_Enable(TIM2, 548, 65535);
 	Timer_Start(TIM2);
 	
+	MyTimer_PWM(TIM2, '2');
 	
 	/* Tests for GPIO Driver */
 	/*

@@ -61,3 +61,13 @@ void TIM4_IRQHandler() {
 }
 
 
+
+
+void MyTimer_PWM(TIM_TypeDef * Timer, char Channel){
+		Timer->CCER |= 1;
+	
+}
+
+
+
+
