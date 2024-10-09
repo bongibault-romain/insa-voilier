@@ -43,6 +43,8 @@ int main (void)
 	GPIO_Set_Config(GPIOB, 14, OUTPUT_50MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 	*/
 	
+	Timer_Active_IT(TIM2, 1);
+	
 	while (1)
 	{
 		GPIO_Set(GPIOA, 5, GPIO_Get(GPIOC, 13));
