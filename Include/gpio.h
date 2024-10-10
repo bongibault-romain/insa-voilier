@@ -32,12 +32,12 @@ enum gpio_cnf {
 
 void GPIO_Enable(GPIO_TypeDef *name);
 
-void GPIO_Set_Config(GPIO_TypeDef *name, char port, enum gpio_mode mode, enum gpio_cnf config);
-void GPIO_Reset_Config(GPIO_TypeDef *name, char port);
+void GPIO_Set_Config(GPIO_TypeDef *name, char pin, enum gpio_mode mode, enum gpio_cnf config);
+void GPIO_Reset_Config(GPIO_TypeDef *name, char pin);
 
-bool GPIO_Get(GPIO_TypeDef *name, char port);
-void GPIO_Set(GPIO_TypeDef *name, char port, bool value);
-void GPIO_Toggle(GPIO_TypeDef *name, char port);
+bool GPIO_Get(GPIO_TypeDef *name, char pin);
+void GPIO_Set(GPIO_TypeDef *name, char pin, bool value);
+void GPIO_Toggle(GPIO_TypeDef *name, char pin);
 
 
 #endif
