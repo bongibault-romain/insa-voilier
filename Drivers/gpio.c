@@ -1,19 +1,10 @@
 #include "gpio.h"
 
-int __GPIO_Get_Number(GPIO_TypeDef *name) {
-	if (name == GPIOA) return 2;
-	if (name == GPIOB) return 3;
-	if (name == GPIOC) return 4;
-	if (name == GPIOD) return 5;
-	if (name == GPIOE) return 6;
-	if (name == GPIOF) return 7;
-	if (name == GPIOG) return 8;
-	
-	return 0;
-}
-
 void GPIO_Enable(GPIO_TypeDef *name) {
-	RCC->APB2ENR |= 1 << (__GPIO_Get_Number(name));
+	if (name == GPIOA) RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
+	if (name == GPIOB) RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
+	if (name == GPIOC) RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
+	if (name == GPIOD) RCC->APB2ENR |= RCC_APB2ENR_IOPDEN;
 }
 
 void GPIO_Set_Config(GPIO_TypeDef *name, char pin, enum gpio_mode mode, enum gpio_cnf config) {
