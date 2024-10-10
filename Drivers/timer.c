@@ -86,31 +86,31 @@ void TIM4_IRQHandler() {
 }
 
 void Timer_PWM_Enable(TIM_TypeDef * timer, char channel, char mode) {
-	assert(channel > 0 && channel <= 4);
+	assert(channel == TIM_CHANNEL_1 || channel == TIM_CHANNEL_2 || channel == TIM_CHANNEL_3 || channel == TIM_CHANNEL_4);
 	assert(mode == PWM_MODE_1 || mode == PWM_MODE_2);
 	
-	if (channel == 1) {
+	if (channel == TIM_CHANNEL_1) {
 		timer->CCER |= TIM_CCER_CC1E; 
 		timer->CCMR1 |= TIM_CCMR1_OC1M; // On met tous les bits de OC1M à 1 (=PWM_MODE_2 = 0b111)
 		
 		if (mode == PWM_MODE_1) timer->CCMR1 &= ~TIM_CCMR1_OC1M_0; // On met le bit le plus à droite à 0 pour mettre la PWM en mode 1
 	}
 	
-	if (channel == 2) {
+	if (channel == TIM_CHANNEL_2) {
 		timer->CCER |= TIM_CCER_CC2E;
 		timer->CCMR1 |= TIM_CCMR1_OC2M;
 		
 		if (mode == PWM_MODE_1) timer->CCMR1 &= ~TIM_CCMR1_OC2M_0;
 	}
 	
-	if (channel == 3) {
+	if (channel == TIM_CHANNEL_3) {
 		timer->CCER |= TIM_CCER_CC3E;
 		timer->CCMR2 |= TIM_CCMR2_OC3M;
 		
 		if (mode == PWM_MODE_1) timer->CCMR2 &= ~TIM_CCMR2_OC3M_0;
 	}
 	
-	if (channel == 4) { 
+	if (channel == TIM_CHANNEL_4) { 
 		timer->CCER |= TIM_CCER_CC4E;
 		timer->CCMR2 |= TIM_CCMR2_OC4M;
 		
@@ -118,10 +118,9 @@ void Timer_PWM_Enable(TIM_TypeDef * timer, char channel, char mode) {
 	}
 }
 
-
 void Timer_PWM_Set(TIM_TypeDef *timer, char channel, unsigned short value) {
-	if (channel == 1) timer->CCR1 = value;
-	if (channel == 2) timer->CCR2 = value;
-	if (channel == 3) timer->CCR3 = value;
-	if (channel == 4) timer->CCR4 = value;
+	if (channel == TIM_CHANNEL_1) timer->CCR1 = value;
+	if (channel == TIM_CHANNEL_2) timer->CCR2 = value;
+	if (channel == TIM_CHANNEL_3) timer->CCR3 = value;
+	if (channel == TIM_CHANNEL_4) timer->CCR4 = value;
 }
