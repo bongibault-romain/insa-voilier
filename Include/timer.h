@@ -21,10 +21,10 @@
 #include <stddef.h>
 #include <assert.h>
 
-void Timer_Enable(TIM_TypeDef *name, unsigned short psc, unsigned short arr);
+void Timer_Enable(TIM_TypeDef *timer, unsigned short psc, unsigned short arr);
 
-void Timer_Start(TIM_TypeDef *name);
-void Timer_Stop(TIM_TypeDef *name);
+void Timer_Start(TIM_TypeDef *timer);
+void Timer_Stop(TIM_TypeDef *timer);
 
 void Timer_Active_IT(TIM_TypeDef *timer, uint32_t priority, void (*callback) (void));
 
