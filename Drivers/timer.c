@@ -89,6 +89,10 @@ void Timer_PWM_Enable(TIM_TypeDef * timer, char channel, char mode) {
 	assert(channel == TIM_CHANNEL_1 || channel == TIM_CHANNEL_2 || channel == TIM_CHANNEL_3 || channel == TIM_CHANNEL_4);
 	assert(mode == PWM_MODE_1 || mode == PWM_MODE_2);
 	
+	if (timer == TIM1) {
+		timer->BDTR |= TIM_BDTR_MOE;
+	}
+	
 	if (channel == TIM_CHANNEL_1) {
 		timer->CCER |= TIM_CCER_CC1E; 
 		timer->CCMR1 |= TIM_CCMR1_OC1M; // On met tous les bits de OC1M à 1 (=PWM_MODE_2 = 0b111)
