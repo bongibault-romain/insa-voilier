@@ -2,6 +2,7 @@
 #include "stm32f10x.h"
 #include "gpio.h"
 #include "timer.h"
+#include "adc.h"
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -18,23 +19,10 @@ int main (void)
 	
 	Timer_Enable(TIM1, 548, 65535);
 	
-	GPIO_Set_Config(TIM1_CHANNEL_1_GPIO, TIM1_CHANNEL_1_PIN, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
-	GPIO_Set_Config(TIM1_CHANNEL_2_GPIO, TIM1_CHANNEL_2_PIN, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
-	GPIO_Set_Config(TIM1_CHANNEL_3_GPIO, TIM1_CHANNEL_3_PIN, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
-	GPIO_Set_Config(TIM1_CHANNEL_4_GPIO, TIM1_CHANNEL_4_PIN, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
+	GPIO_Set_Config(GPIOB, 0, INPUT, I_ANALOG);
 	
-	// CC2E & PW MODE 1
-	Timer_PWM_Enable(TIM1, TIM_CHANNEL_1, PWM_MODE_2);
-	Timer_PWM_Enable(TIM1, TIM_CHANNEL_2, PWM_MODE_2);
-	Timer_PWM_Enable(TIM1, TIM_CHANNEL_3, PWM_MODE_2);
-	Timer_PWM_Enable(TIM1, TIM_CHANNEL_4, PWM_MODE_2);
+	ADC_Enable(ADC1);
 	
-	Timer_PWM_Set(TIM1, TIM_CHANNEL_1, 0xFFFF/2);	
-	Timer_PWM_Set(TIM1, TIM_CHANNEL_2, 0xFFFF/3);	
-	Timer_PWM_Set(TIM1, TIM_CHANNEL_3, 0xFFFF/4);	
-	Timer_PWM_Set(TIM1, TIM_CHANNEL_4, 0xFFFF/5);	
-	
-	Timer_Start(TIM1);
 	/* Tests for GPIO Driver */
 	/*
 	GPIO_Set_Config(GPIOB, 0, INPUT, I_FLOATING_INPUT);
@@ -59,6 +47,7 @@ int main (void)
 	
 	while (1)
 	{
+		ADC_Read_Wait(ADC1);
 	}
 }
 

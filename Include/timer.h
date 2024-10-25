@@ -52,10 +52,10 @@
 #define TIM3_CHANNEL_3_PIN 0
 #define TIM3_CHANNEL_4_PIN 1
 
-#define TIM4_CHANNEL_1_GPIO 6
-#define TIM4_CHANNEL_2_GPIO 7
-#define TIM4_CHANNEL_3_GPIO 8
-#define TIM4_CHANNEL_4_GPIO 9
+#define TIM4_CHANNEL_1_PIN 6
+#define TIM4_CHANNEL_2_PIN 7
+#define TIM4_CHANNEL_3_PIN 8
+#define TIM4_CHANNEL_4_PIN 9
 
 #include "stm32f10x.h"
 #include <stddef.h>
