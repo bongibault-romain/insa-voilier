@@ -21,5 +21,7 @@ short ADC_Read_Wait(ADC_TypeDef *adc) {
 	
 	while ((adc->SR & ADC_SR_EOC) == 0) { };
 	
+	adc->SR &= ~(ADC_SR_EOC);
+	
 	return (short) (adc->DR | ADC_DR_DATA);
 }
