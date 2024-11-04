@@ -19,39 +19,30 @@ int main (void)
 	GPIO_Enable(GPIOB);
 	GPIO_Enable(GPIOC);
 	
-	Timer_Enable(TIM1, 548, 65535);
+	float valeur = 50.0;
+		// set GPIO
+	GPIO_Set_Config(GPIOB, 0, OUTPUT_2MHZ, O_GPO_PUSH_PULL); //Plateau Dir
 	
-	GPIO_Set_Config(GPIOB, 0, INPUT, I_ANALOG);
+	// check if value + or - for direction
+//	if (valeur<0) {
+//		GPIO_Set(GPIOB, 0, true);
+//	}
+//	else{
+//		GPIO_Set(GPIOB, 0, false);
+//	}
 	
-	ADC_Enable(ADC1);
+	GPIO_Set_Config(TIM2_CHANNEL_1_GPIO, TIM2_CHANNEL_1_PIN, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL); //Plateau PWM
 	
-	/* Tests for GPIO Driver */
-	/*
-	GPIO_Set_Config(GPIOB, 0, INPUT, I_FLOATING_INPUT);
-	GPIO_Set_Config(GPIOB, 1, INPUT, I_ANALOG);
-	GPIO_Set_Config(GPIOB, 2, INPUT, I_PULL_UP_PULL_DOWN);
+	Timer_Enable(TIM2, 548, 65535);
+	Timer_Start(TIM2);
+	Timer_PWM_Enable(TIM2, TIM_CHANNEL_1, PWM_MODE_2);
 	
-	GPIO_Set_Config(GPIOB, 3, OUTPUT_2MHZ, O_GPO_OPEN_DRAIN);
-	GPIO_Set_Config(GPIOB, 4, OUTPUT_2MHZ, O_GPO_PUSH_PULL);
-	GPIO_Set_Config(GPIOB, 5, OUTPUT_2MHZ, O_ALTERNATE_GPO_OPEN_DRAIN);
-	GPIO_Set_Config(GPIOB, 6, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
+		Timer_PWM_Set(TIM2, TIM_CHANNEL_1, valeur);
 	
-	GPIO_Set_Config(GPIOB, 7, OUTPUT_10MHZ, O_GPO_OPEN_DRAIN);
-	GPIO_Set_Config(GPIOB, 8, OUTPUT_10MHZ, O_GPO_PUSH_PULL);
-	GPIO_Set_Config(GPIOB, 9, OUTPUT_10MHZ, O_ALTERNATE_GPO_OPEN_DRAIN);
-	GPIO_Set_Config(GPIOB, 10, OUTPUT_10MHZ, O_ALTERNATE_GPO_PUSH_PULL);
-	
-	GPIO_Set_Config(GPIOB, 11, OUTPUT_50MHZ, O_GPO_OPEN_DRAIN);
-	GPIO_Set_Config(GPIOB, 12, OUTPUT_50MHZ, O_GPO_PUSH_PULL);
-	GPIO_Set_Config(GPIOB, 13, OUTPUT_50MHZ, O_ALTERNATE_GPO_OPEN_DRAIN);
-	GPIO_Set_Config(GPIOB, 14, OUTPUT_50MHZ, O_ALTERNATE_GPO_PUSH_PULL);
-	*/
 	
 	while (1)
 	{
-		value = ADC_Read_Wait(ADC1);
-		
-		printf("%d\n", value);
 	}
+	
 }
 
