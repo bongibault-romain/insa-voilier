@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+short value = 0;
+
 void test1() {
 	return;
 }
@@ -47,7 +49,9 @@ int main (void)
 	
 	while (1)
 	{
-		ADC_Read_Wait(ADC1);
+		value = ADC_Read_Wait(ADC1);
+		
+		printf("%d\n", value);
 	}
 }
 
