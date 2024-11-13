@@ -4,6 +4,8 @@
 #include "timer.h"
 #include "adc.h"
 
+#include "girouette.h"
+
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -19,12 +21,12 @@ int main (void)
 	GPIO_Enable(GPIOB);
 	GPIO_Enable(GPIOC);
 	
-	Timer_Enable(TIM1, 548, 65535);
+	/*Timer_Enable(TIM1, 548, 65535);
 	
 	GPIO_Set_Config(GPIOB, 0, INPUT, I_ANALOG);
 	
 	ADC_Enable(ADC1);
-	
+	*/
 	/* Tests for GPIO Driver */
 	/*
 	GPIO_Set_Config(GPIOB, 0, INPUT, I_FLOATING_INPUT);
@@ -47,11 +49,13 @@ int main (void)
 	GPIO_Set_Config(GPIOB, 14, OUTPUT_50MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 	*/
 	
+	init_girouette();
 	while (1)
 	{
-		value = ADC_Read_Wait(ADC1);
+		/*value = ADC_Read_Wait(ADC1);
 		
 		printf("%d\n", value);
+		*/
 	}
 }
 
