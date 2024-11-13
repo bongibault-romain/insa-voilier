@@ -431,11 +431,6 @@
               <FileType>1</FileType>
               <FilePath>.\Services\roues.c</FilePath>
             </File>
-            <File>
-              <FileName>roues.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\roues.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -870,11 +865,6 @@
               <FileName>roues.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Services\roues.c</FilePath>
-            </File>
-            <File>
-              <FileName>roues.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\roues.h</FilePath>
             </File>
           </Files>
         </Group>
