@@ -424,6 +424,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Sevices</GroupName>
+          <Files>
+            <File>
+              <FileName>accelerometre.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Services\accelerometre.c</FilePath>
+            </File>
+            <File>
+              <FileName>accelerometre.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Include\accelerometre.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
@@ -435,7 +450,7 @@
       <TargetName>Simulation</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6210000::V6.21::ARMCLANG</pCCUsed>
+      <pCCUsed>6220000::V6.22::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -845,6 +860,21 @@
               <FileName>adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Drivers\adc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Sevices</GroupName>
+          <Files>
+            <File>
+              <FileName>accelerometre.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Services\accelerometre.c</FilePath>
+            </File>
+            <File>
+              <FileName>accelerometre.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Include\accelerometre.h</FilePath>
             </File>
           </Files>
         </Group>

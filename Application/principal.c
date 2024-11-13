@@ -15,15 +15,15 @@ void test1() {
 
 int main (void)
 {
-	GPIO_Enable(GPIOA);
-	GPIO_Enable(GPIOB);
-	GPIO_Enable(GPIOC);
-	
-	Timer_Enable(TIM1, 548, 65535);
-	
-	GPIO_Set_Config(GPIOB, 0, INPUT, I_ANALOG);
-	
-	ADC_Enable(ADC1);
+//	GPIO_Enable(GPIOA);
+//	GPIO_Enable(GPIOB);
+//	GPIO_Enable(GPIOC);
+//	
+//	Timer_Enable(TIM1, 548, 65535);
+//	
+//	GPIO_Set_Config(GPIOB, 0, INPUT, I_ANALOG);
+//	
+//	ADC_Enable(ADC1);
 	
 	/* Tests for GPIO Driver */
 	/*
@@ -49,9 +49,9 @@ int main (void)
 	
 	while (1)
 	{
-		value = ADC_Read_Wait(ADC1);
-		
-		printf("%d\n", value);
+//		value = ADC_Read_Wait(ADC1);
+//		
+//		printf("%d\n", value);
 	}
 }
 
