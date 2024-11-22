@@ -3,27 +3,26 @@
 #include "gpio.h"
 #include "timer.h"
 #include "adc.h"
+#include "usart.h"
 
 #include <stdio.h>
 #include <stdbool.h>
 
-short value = 0;
+signed char ctest = 0;
 
-void test1() {
-	return;
+void test(char value) {
+	ctest = value; 
 }
 
 int main (void)
 {
 	GPIO_Enable(GPIOA);
-	GPIO_Enable(GPIOB);
-	GPIO_Enable(GPIOC);
 	
-	Timer_Enable(TIM1, 548, 65535);
+	GPIO_Set_Config(GPIOA, 9, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
+	GPIO_Set_Config(GPIOA, 10, INPUT, I_FLOATING_INPUT);
 	
-	GPIO_Set_Config(GPIOB, 0, INPUT, I_ANALOG);
-	
-	ADC_Enable(ADC1);
+	USART_Enable(USART1, READ_WRITE);
+	USART_Set_Read_Handler(USART1, test);
 	
 	/* Tests for GPIO Driver */
 	/*
@@ -49,9 +48,6 @@ int main (void)
 	
 	while (1)
 	{
-		value = ADC_Read_Wait(ADC1);
-		
-		printf("%d\n", value);
 	}
 }
 
