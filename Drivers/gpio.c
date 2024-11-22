@@ -55,7 +55,7 @@ void GPIO_Reset_Config(GPIO_TypeDef *name, char pin) {
 }
 
 bool GPIO_Get(GPIO_TypeDef *name, char pin) {
-	assert(pin > 0 && pin < 16);
+	assert(pin >= 0 && pin < 16);
 	
 	short value = (short) name->IDR;
 	
@@ -63,7 +63,7 @@ bool GPIO_Get(GPIO_TypeDef *name, char pin) {
 }
 
 void GPIO_Set(GPIO_TypeDef *name, char pin, bool value) {
-	assert(pin > 0 && pin < 16);
+	assert(pin >= 0 && pin < 16);
 	
 	if (value) {
 		name->ODR |= 1 << pin;

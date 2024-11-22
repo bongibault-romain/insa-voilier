@@ -1,9 +1,9 @@
-
 #include "stm32f10x.h"
 #include "gpio.h"
 #include "timer.h"
 #include "adc.h"
 #include "usart.h"
+#include "roues.h"
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -46,8 +46,16 @@ int main (void)
 	GPIO_Set_Config(GPIOB, 14, OUTPUT_50MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 	*/
 	
+	unsigned short valeur = 50;
+		
+	sens_rotation(true);
+	rotation(valeur);
+	
+	
 	while (1)
 	{
+		
 	}
+	
 }
 
