@@ -421,6 +421,11 @@
               <FileType>1</FileType>
               <FilePath>.\Drivers\adc.c</FilePath>
             </File>
+            <File>
+              <FileName>ecoute.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\ecoute.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -845,6 +850,11 @@
               <FileName>adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Drivers\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>ecoute.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\ecoute.c</FilePath>
             </File>
           </Files>
         </Group>

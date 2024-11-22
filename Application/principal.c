@@ -3,6 +3,7 @@
 #include "gpio.h"
 #include "timer.h"
 #include "adc.h"
+#include "ecoute.h"
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -12,9 +13,9 @@ void test1() {
 	return;
 }
 
-int main (void)
-   {
-	GPIO_Enable(GPIOA);
+int main (void){
+	/*
+ 	GPIO_Enable(GPIOA);
 		 
 	GPIO_Enable(GPIOB);
 	int arr=65535/26;
@@ -23,9 +24,11 @@ int main (void)
 	Timer_Enable(TIM1, 548, arr); //Timer_Enable(TIM_TypeDef *timer, unsigned short psc, unsigned short arr)
 	Timer_Start(TIM1); // Timer_Start(TIM_TypeDef *timer)
 	
-	int r = 0;
 	Timer_PWM_Enable(TIM1, TIM_CHANNEL_1, PWM_MODE_1); //Timer_PWM_Enable(TIM_TypeDef * timer, char channel, char mode)
-	 // Timer_PWM_Set(TIM_TypeDef *timer, char channel, unsigned short value)
+	*/
+	ecoute_enable();	
+	
+	// Timer_PWM_Set(TIM_TypeDef *timer, char channel, unsigned short value)
 
 	
 	/* Tests for GPIO Driver */
@@ -51,10 +54,22 @@ int main (void)
 	*/
 	while (1)
 	{
-		Timer_PWM_Set(TIM1, TIM_CHANNEL_1, (arr)/(10+r));
-		for (int i=0;i<555555;i++){
+		int r = 9;
+		ecoute_set(0);//10
+		for (int i=0;i<5555555;i++){
 		}
-		r = (r+1) %10;
+		r = 12;
+		ecoute_set(30);//13
+		for (int i=0;i<5555555;i++){
+		}
+		r=15;
+		ecoute_set(60);//16
+		for (int i=0;i<5555555;i++){
+		}
+		r=18;
+		ecoute_set(90);//20
+		for (int i=0;i<5555555;i++){
+		}
 	}
 		
 }
