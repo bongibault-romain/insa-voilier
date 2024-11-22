@@ -8,19 +8,21 @@ void USART_Enable(USART_TypeDef *usart, enum usart_mode mode) {
 	if (usart == USART1) {
 		RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
 		__NVIC_EnableIRQ(USART1_IRQn);
+		usart->BRR = FREQ_CLOCK_APB2/FREQ_USART_BAUD;
 	}
 	
 	if (usart == USART2) {
 		RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
 		__NVIC_EnableIRQ(USART2_IRQn);
+		usart->BRR = FREQ_CLOCK_APB1/FREQ_USART_BAUD;
 	}
 	
 	if (usart == USART3) {
 		RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
 		__NVIC_EnableIRQ(USART3_IRQn);
+		usart->BRR = FREQ_CLOCK_APB1/FREQ_USART_BAUD;
 	}
 	
-	usart->BRR = 0x1D4C;
 	usart->CR1 |= USART_CR1_UE;
 	usart->CR1 &= ~USART_CR1_M;
 	
@@ -51,7 +53,7 @@ void USART_Set_Read_Handler(USART_TypeDef *usart, void (*handler) (char read_val
 }
 
 void USART_Send(USART_TypeDef *usart, char value) {
-	while (usart->SR & USART_SR_RXNE) { };
+	while (!(usart->SR & USART_SR_TXE)) { };
 	
 	usart->DR = value;
 	

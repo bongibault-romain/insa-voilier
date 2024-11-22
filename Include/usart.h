@@ -5,6 +5,10 @@
 #include <stddef.h>
 #include <assert.h>
 
+#define FREQ_USART_BAUD  	9600
+#define FREQ_CLOCK_APB1		36000000u
+#define FREQ_CLOCK_APB2 	72000000u
+
 enum usart_mode {
 	READ_ONLY,
 	WRITE_ONLY,

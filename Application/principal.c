@@ -8,12 +8,19 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+signed char ctest = 0;
+
 void test(char value) {
-	USART_Send(USART1, value);
+	ctest = value; 
 }
 
 int main (void)
 {
+	GPIO_Enable(GPIOA);
+	
+	GPIO_Set_Config(GPIOA, 9, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
+	GPIO_Set_Config(GPIOA, 10, INPUT, I_FLOATING_INPUT);
+	
 	USART_Enable(USART1, READ_WRITE);
 	USART_Set_Read_Handler(USART1, test);
 	
