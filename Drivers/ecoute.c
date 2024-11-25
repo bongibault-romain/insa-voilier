@@ -22,6 +22,6 @@ void ecoute_enable(){
 	
 }
 //int teta
-void ecoute_set(int teta){
-	Timer_PWM_Set(TIM1, TIM_CHANNEL_1, ARR/(MIN+teta*((MAX-MIN)/90)));
+void ecoute_set(int theta){
+	Timer_PWM_Set(TIM1, TIM_CHANNEL_1, (65535/26)/(MIN - (MIN-MAX)*theta/90));
 }

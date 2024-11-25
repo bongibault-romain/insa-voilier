@@ -6,4 +6,4 @@
 
 void ecoute_enable();
 
-void ecoute_set(int teta);
+void ecoute_set(int theta);
