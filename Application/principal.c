@@ -49,7 +49,7 @@ int main (void)
 	GPIO_Set_Config(GPIOB, 14, OUTPUT_50MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 	*/
 	
-	init_girouette();
+	setup_girouette();
 	while (1)
 	{
 		/*value = ADC_Read_Wait(ADC1);

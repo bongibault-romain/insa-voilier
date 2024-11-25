@@ -6,12 +6,11 @@
 #include "timer.h"
 #include "adc.h"
 
+void detect_zero_handler();
+
 /* Initialisation des broches pour A, B, index 
 ** et du timer incremental
 */
-void init_girouette();
-
-void start_count(TIM_TypeDef *timer, GPIO_TypeDef gpio, char broche);
-
+void setup_girouette();
 
 #endif

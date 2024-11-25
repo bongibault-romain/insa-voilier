@@ -1,9 +1,16 @@
 #include "girouette.h"
 
+
+void detect_zero_handler(){
+	if(GPIO_Get(GPIOB, 0)) {
+		TIM3->CNT = 0;
+	}
+}
+
 /* Initialisation des broches pour A, B, index 
 ** et du timer incremental
 */
-void init_girouette(){
+void setup_girouette(){
 	
 	GPIO_TypeDef * gpio = GPIOA;
 	TIM_TypeDef * timer = TIM3;
@@ -14,15 +21,28 @@ void init_girouette(){
 	// phase B : A7
 	GPIO_Set_Config(gpio, 7, INPUT, I_FLOATING_INPUT);
 	
-	// phase index
-	//GPIO_Set_Config(gpio, 2, INPUT, I_FLOATING_INPUT);
+	// phase index : B0
+	GPIO_Set_Config(GPIOB, 0, INPUT, I_FLOATING_INPUT);
 	
 	// timer incremental (timer, PSC, ARR)
 	// ARR max value : (360*4) turns on B including 360 turns on A
 	Timer_Enable(timer, 0, 360*4);
 	
-	Timer_PWM_Enable(timer, 1, PWM_MODE_1); // pwm mode encode
-	Timer_PWM_Enable(timer, 2, PWM_MODE_1);
+	// phase A : config Channel 1 CC1S to Input
+	timer->CCMR1 &= ~TIM_CCMR1_CC1S;
+	timer->CCMR1 |= TIM_CCMR1_CC1S;
+	
+	// phase A : flag CC1E enabled
+	timer->CCER &= ~TIM_CCER_CC1E;
+	timer->CCER |= TIM_CCER_CC1E;
+	
+	// phase B : config Channel 2 CC2S to Input
+	timer->CCMR1 &= ~TIM_CCMR1_CC2S;
+	timer->CCMR1 |= TIM_CCMR1_CC2S;
+	
+	// phase B : flag CC2E enabled
+	timer->CCER &= ~TIM_CCER_CC2E;
+	timer->CCER |= TIM_CCER_CC2E;
 	
 	// set timer to encoder interface mode
 	// from datasheet : SMS=011 if it is counting on both TI1 and TI2 edges.
@@ -34,9 +54,14 @@ void init_girouette(){
 	
 	// enable counter : CEN = 1
 	timer->CR1 |= TIM_CR1_CEN;
+	
+	// enable interrupt 
+	//Timer_Active_IT(timer, 0, detect_zero_handler);
+	
+	Timer_Start(timer);
 }
 
-void start_count(TIM_TypeDef *timer, GPIO_TypeDef gpio, char broche){
-	Timer_Start(timer);
+void start_count(){
 	
+
 }
