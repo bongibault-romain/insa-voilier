@@ -8,10 +8,19 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-signed char ctest = 0;
+signed char test = 0;
 
-void test(char value) {
-	ctest = value; 
+void roue_handler(char value) {
+	signed char valeur = value;
+	
+	bool sens = true;
+	if (valeur < 0) {
+		sens = false;
+		valeur = -valeur;
+	}
+		
+	sens_rotation(sens);
+	rotation((short) valeur);
 }
 
 int main (void)
@@ -22,7 +31,9 @@ int main (void)
 	GPIO_Set_Config(GPIOA, 10, INPUT, I_FLOATING_INPUT);
 	
 	USART_Enable(USART1, READ_WRITE);
-	USART_Set_Read_Handler(USART1, test);
+	USART_Set_Read_Handler(USART1, roue_handler);
+	
+	Wheels_Init();
 	
 	/* Tests for GPIO Driver */
 	/*
@@ -45,11 +56,6 @@ int main (void)
 	GPIO_Set_Config(GPIOB, 13, OUTPUT_50MHZ, O_ALTERNATE_GPO_OPEN_DRAIN);
 	GPIO_Set_Config(GPIOB, 14, OUTPUT_50MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 	*/
-	
-	unsigned short valeur = 50;
-		
-	sens_rotation(true);
-	rotation(valeur);
 	
 	
 	while (1)

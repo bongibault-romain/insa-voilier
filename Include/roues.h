@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 
+void Wheels_Init(void);
 
 void sens_rotation(bool sens);
 
