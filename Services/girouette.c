@@ -1,9 +1,16 @@
 #include "girouette.h"
 
+int count_interrupt = 0;
 
 void detect_zero_handler(){
-	if(GPIO_Get(GPIOB, 0)) {
 		TIM3->CNT = 0;
+}
+
+void EXTI0_IRQHandler(void){
+	if(EXTI->PR & EXTI_PR_PR0){
+		EXTI->PR |= EXTI_PR_PR0; // reset pr flag
+		detect_zero_handler();
+		count_interrupt ++;
 	}
 }
 
@@ -25,8 +32,8 @@ void setup_girouette(){
 	GPIO_Set_Config(GPIOB, 0, INPUT, I_FLOATING_INPUT);
 	
 	// timer incremental (timer, PSC, ARR)
-	// ARR max value : (360*4) turns on B including 360 turns on A
-	Timer_Enable(timer, 0, 360*4);
+	// ARR max value : (360*4) turns on B including 360 turns on A and 360 = 0
+	Timer_Enable(timer, 0, ((360*4)-1));
 	
 	// phase A : config Channel 1 CC1S to Input
 	timer->CCMR1 &= ~TIM_CCMR1_CC1S;
@@ -46,22 +53,30 @@ void setup_girouette(){
 	
 	// set timer to encoder interface mode
 	// from datasheet : SMS=011 if it is counting on both TI1 and TI2 edges.
-	timer->SMCR &= ~TIM_SMCR_SMS;
+	timer->SMCR &= ~TIM_SMCR_SMS; // reset
 	timer->SMCR |= TIM_SMCR_SMS_0 | TIM_SMCR_SMS_1; // set to mode 3 : 011
 	
 	// non-inverting polarity for TI1, TI2
 	timer->CCER &= ~(TIM_CCER_CC1P | TIM_CCER_CC2P);
 	
 	// enable counter : CEN = 1
-	timer->CR1 |= TIM_CR1_CEN;
+	timer->CR1 |= TIM_CR1_CEN; 
 	
-	// enable interrupt 
-	//Timer_Active_IT(timer, 0, detect_zero_handler);
+	// enable external interrupt 
+	RCC->APB2ENR |= RCC_APB2ENR_AFIOEN; 
+	AFIO->EXTICR[0] |= AFIO_EXTICR1_EXTI0_PB; // chosen b0
+	EXTI->IMR |= EXTI_IMR_MR0;
+	EXTI->RTSR |= EXTI_RTSR_TR0; // authorise interruption on front montant
 	
+	// activate external interrupt 
+	NVIC_EnableIRQ(EXTI0_IRQn);
+	NVIC_SetPriority(EXTI0_IRQn, 10);
+	
+	RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
+
 	Timer_Start(timer);
 }
 
-void start_count(){
-	
-
+float convert_to_degrees(){
+	return (TIM3->CNT/4);
 }

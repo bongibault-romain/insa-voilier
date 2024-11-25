@@ -13,4 +13,5 @@ void detect_zero_handler();
 */
 void setup_girouette();
 
+float convert_to_degrees();
 #endif

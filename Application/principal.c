@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-short value = 0;
+float value = 0;
 
 void test1() {
 	return;
@@ -52,10 +52,9 @@ int main (void)
 	setup_girouette();
 	while (1)
 	{
-		/*value = ADC_Read_Wait(ADC1);
+		value = convert_to_degrees();
 		
-		printf("%d\n", value);
-		*/
+		//printf("%d\n", value);
 	}
 }
 
