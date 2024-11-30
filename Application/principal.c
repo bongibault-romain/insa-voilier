@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-signed char test = 0;
+unsigned short adc_test = 0;
 
 void roue_handler(char value) {
 	signed char valeur = value;
@@ -35,6 +35,8 @@ int main (void)
 	
 	Wheels_Init();
 	
+	roue_handler(0);
+	
 	/* Tests for GPIO Driver */
 	/*
 	GPIO_Set_Config(GPIOB, 0, INPUT, I_FLOATING_INPUT);
@@ -56,11 +58,20 @@ int main (void)
 	GPIO_Set_Config(GPIOB, 13, OUTPUT_50MHZ, O_ALTERNATE_GPO_OPEN_DRAIN);
 	GPIO_Set_Config(GPIOB, 14, OUTPUT_50MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 	*/
+
+	GPIO_Enable(GPIOC);
+	GPIO_Set_Config(GPIOC, 0, INPUT, I_ANALOG);
+	ADC_Enable(ADC1);
 	
+	char message[64];
 	
 	while (1)
 	{
+		unsigned short battery = ADC_Read_Wait(ADC1, 10);
 		
+		sprintf(message, "Batterie: %hu\n", battery);
+		
+		USART_Send_String(USART1, message);
 	}
 	
 }

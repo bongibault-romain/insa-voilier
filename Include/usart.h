@@ -20,5 +20,6 @@ void USART_Enable(USART_TypeDef *usart, enum usart_mode mode);
 void USART_Set_Read_Handler(USART_TypeDef *usart, void (*handler) (char read_value));
 
 void USART_Send(USART_TypeDef *usart, char value);
+void USART_Send_String(USART_TypeDef *usart, const char *str);
 
 #endif

@@ -11,7 +11,7 @@ void Wheels_Init(void) {
 	GPIO_Set_Config(TIM2_CHANNEL_1_GPIO, TIM2_CHANNEL_1_PIN, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL); //Plateau PWM
 	
 	Timer_Enable(TIM2, 35, 140);
-	Timer_PWM_Set(TIM2, TIM_CHANNEL_1, 0);
+	Timer_PWM_Set(TIM2, TIM_CHANNEL_1, 1);
 	Timer_PWM_Enable(TIM2, TIM_CHANNEL_1, PWM_MODE_1);
 	Timer_Start(TIM2);
 }

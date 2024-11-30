@@ -62,6 +62,15 @@ void USART_Send(USART_TypeDef *usart, char value) {
 	usart->SR &= ~(USART_SR_TC);
 }
 
+void USART_Send_String(USART_TypeDef *usart, const char *str) {
+	int i = 0;
+	
+	while (str[i] != '\0') {
+		USART_Send(usart, str[i]);
+		i++;
+	}
+}
+
 void USART1_IRQHandler(void) {
 	char value = USART1->DR;
 	USART1->SR &= ~USART_SR_RXNE;
@@ -75,8 +84,8 @@ void USART2_IRQHandler(void) {
 	char value = USART2->DR;
 	USART2->SR &= ~USART_SR_RXNE;
 	
-	if (USART1_CALLBACK != NULL) {
-		USART1_CALLBACK(value);
+	if (USART2_CALLBACK != NULL) {
+		USART2_CALLBACK(value);
 	}
 }
 
@@ -84,7 +93,7 @@ void USART3_IRQHandler(void) {
 	char value = USART3->DR;
 	USART3->SR &= ~USART_SR_RXNE;
 	
-	if (USART1_CALLBACK != NULL) {
-		USART1_CALLBACK(value);
+	if (USART3_CALLBACK != NULL) {
+		USART3_CALLBACK(value);
 	}
 }

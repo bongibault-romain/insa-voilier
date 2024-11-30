@@ -11,15 +11,18 @@ void ADC_Enable(ADC_TypeDef *adc) {
 	
 	adc->CR2 |= ADC_CR2_ADON;
 	adc->CR2 |= ADC_CR2_EXTTRIG;
-	adc->CR2 |= ADC_CR2_EXTSEL;
-	
-	adc->SQR3 |= ADC_SQR3_SQ1_3;	
+	adc->CR2 |= ADC_CR2_EXTSEL;	
 }
 
-short ADC_Read_Wait(ADC_TypeDef *adc) {
+unsigned short ADC_Read_Wait(ADC_TypeDef *adc, char channel) {
+	adc->SQR3 &= ~ADC_SQR3_SQ1;
+	adc->SQR3 |= channel;
+	
+	assert(channel < 17);
+	
 	adc->CR2 |= ADC_CR2_SWSTART;
 	
 	while ((adc->SR & ADC_SR_EOC) == 0) { };
 	
-	return (short) (adc->DR & ADC_DR_DATA);
+	return (unsigned short) (adc->DR & ADC_DR_DATA);
 }
