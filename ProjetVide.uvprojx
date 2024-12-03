@@ -451,6 +451,11 @@
               <FileType>1</FileType>
               <FilePath>.\Services\battery.c</FilePath>
             </File>
+            <File>
+              <FileName>sails.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Services\sails.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -905,6 +910,11 @@
               <FileName>battery.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Services\battery.c</FilePath>
+            </File>
+            <File>
+              <FileName>sails.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Services\sails.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -12,5 +12,5 @@ void Sails_Enable(TIM_TypeDef * timer) {
 }
 //int teta
 void Sails_Set(int theta){
-	Timer_PWM_Set(sails_timer, TIM_CHANNEL_1, (65535/26)/(SAILS_MIN - (SAILS_MIN-SAILS_MAX)*theta/90));
+	Timer_PWM_Set(sails_timer, TIM_CHANNEL_1, (unsigned short) ((65535/26)/(SAILS_MIN - (SAILS_MIN-SAILS_MAX)*theta/90)));
 }
