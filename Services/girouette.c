@@ -2,8 +2,10 @@
 
 int count_interrupt = 0;
 
+static TIM_TypeDef * giourette_timer = NULL;
+
 void detect_zero_handler(){
-		TIM3->CNT = 0;
+		giourette_timer->CNT = 0;
 }
 
 void EXTI0_IRQHandler(void){
@@ -17,20 +19,8 @@ void EXTI0_IRQHandler(void){
 /* Initialisation des broches pour A, B, index 
 ** et du timer incremental
 */
-void setup_girouette(){
-	
-	GPIO_TypeDef * gpio = GPIOA;
-	TIM_TypeDef * timer = TIM3;
-	
-	// phase A : A6
-	GPIO_Set_Config(gpio, 6, INPUT, I_FLOATING_INPUT);
-	
-	// phase B : A7
-	GPIO_Set_Config(gpio, 7, INPUT, I_FLOATING_INPUT);
-	
-	// phase index : B0
-	GPIO_Set_Config(GPIOB, 0, INPUT, I_FLOATING_INPUT);
-	
+void Girouette_Enable(TIM_TypeDef * timer){
+	giourette_timer = timer;
 	// timer incremental (timer, PSC, ARR)
 	// ARR max value : (360*4) turns on B including 360 turns on A and 360 = 0
 	Timer_Enable(timer, 0, ((360*4)-1));
@@ -77,6 +67,6 @@ void setup_girouette(){
 	Timer_Start(timer);
 }
 
-float convert_to_degrees(){
-	return (TIM3->CNT/4);
+int convert_to_degrees(){
+	return (giourette_timer->CNT/4);
 }

@@ -11,7 +11,7 @@ void detect_zero_handler();
 /* Initialisation des broches pour A, B, index 
 ** et du timer incremental
 */
-void setup_girouette();
+void Girouette_Enable(TIM_TypeDef * timer);
 
 float convert_to_degrees();
 #endif

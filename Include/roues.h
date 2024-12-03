@@ -1,12 +1,16 @@
 #ifndef ROUES_H
 #define ROUES_H
 
+#include "stm32f10x.h"
+
 #include <stdbool.h>
 
-void Wheels_Init(void);
+void Wheels_Init(TIM_TypeDef * timer);
 
-void sens_rotation(bool sens);
+void Wheels_Set_Rotation_Direction(bool direction);
 
-void rotation(unsigned short valeur);
+void Wheels_Rotate(unsigned short valeur);
+
+void Wheels_On_Receive(char value);
 
 #endif
