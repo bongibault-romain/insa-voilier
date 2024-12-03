@@ -14,7 +14,7 @@ void Wheels_Init(TIM_TypeDef * timer) {
 }
 
 void Wheels_Set_Rotation_Direction(bool direction) {
-	GPIO_Set(GPIOB, 0, sens);
+	GPIO_Set(GPIOB, 0, direction);
 }
 
 void Wheels_Rotate(unsigned short valeur){
@@ -22,7 +22,7 @@ void Wheels_Rotate(unsigned short valeur){
 }
 
 void Wheels_On_Receive(char value) {
-	signed char valeur = value;
+	signed char valeur = (signed char) value;
 	
 	bool sens = true;
 	if (valeur < 0) {
@@ -31,5 +31,5 @@ void Wheels_On_Receive(char value) {
 	}
 		
 	Wheels_Set_Rotation_Direction(sens);
-	Wheels_Rotate((short) valeur);
+	Wheels_Rotate((unsigned short) valeur);
 }

@@ -29,12 +29,12 @@ int main (void)
 	
 	while (1)
 	{
-		unsigned short battery = ADC_Read_Wait(ADC1, 10);
+		unsigned short battery = Battery_Read();
 		
 		sprintf(message, "Batterie: %hu\n", battery);
 		
 		USART_Send_String(USART1, message);
-		value = convert_to_degrees();
+		value = Girouette_Get_Angle();
 		
 		//printf("%d\n", value);
 	}

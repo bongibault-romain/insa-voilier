@@ -3,8 +3,8 @@
 
 #include "stm32f10x.h"
 
-void Battery_Init(ADC_TypeDef * adc);
+void Battery_Init(ADC_TypeDef * adc, char channel);
 
-char Battery_Read(ADC_TypeDef * adc, unsigned short channel);
+char Battery_Read(void);
 
 #endif

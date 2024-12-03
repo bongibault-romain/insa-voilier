@@ -436,20 +436,20 @@
               <FileType>1</FileType>
               <FilePath>.\Services\roues.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Services</GroupName>
-          <Files>
             <File>
               <FileName>girouette.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Services\girouette.c</FilePath>
             </File>
             <File>
-              <FileName>girouette.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Include\girouette.h</FilePath>
+              <FileName>configuration.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Services\configuration.c</FilePath>
+            </File>
+            <File>
+              <FileName>battery.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Services\battery.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -891,20 +891,20 @@
               <FileType>1</FileType>
               <FilePath>.\Services\roues.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Services</GroupName>
-          <Files>
             <File>
               <FileName>girouette.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Services\girouette.c</FilePath>
             </File>
             <File>
-              <FileName>girouette.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Include\girouette.h</FilePath>
+              <FileName>configuration.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Services\configuration.c</FilePath>
+            </File>
+            <File>
+              <FileName>battery.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Services\battery.c</FilePath>
             </File>
           </Files>
         </Group>

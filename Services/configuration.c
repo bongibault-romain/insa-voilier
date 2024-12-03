@@ -1,5 +1,7 @@
 #include "configuration.h"
 
+#include "stm32f10x.h"
+#include "timer.h"
 #include "gpio.h"
 
 void Configure_GPIO(void) {
