@@ -67,6 +67,6 @@ void Girouette_Enable(TIM_TypeDef * timer){
 	Timer_Start(timer);
 }
 
-int convert_to_degrees(){
+int Girouette_Get_Angle() {
 	return (giourette_timer->CNT/4);
 }

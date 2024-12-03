@@ -13,5 +13,6 @@ void detect_zero_handler();
 */
 void Girouette_Enable(TIM_TypeDef * timer);
 
-float convert_to_degrees();
+int Girouette_Get_Angle();
+
 #endif

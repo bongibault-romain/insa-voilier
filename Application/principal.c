@@ -6,6 +6,7 @@
 #include "roues.h"
 #include "girouette.h"
 #include "configuration.h"
+#include "battery.h"
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -22,9 +23,8 @@ int main (void)
 	
 	Wheels_Init(TIM2);
 	Girouette_Enable(TIM3);
-		
-	ADC_Enable(ADC1);
-	
+	Battery_Init(ADC1, 10);
+			
 	char message[64];
 	
 	while (1)
