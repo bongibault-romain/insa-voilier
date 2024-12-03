@@ -5,10 +5,13 @@
 #include "usart.h"
 #include "roues.h"
 
+#include "girouette.h"
+
 #include <stdio.h>
 #include <stdbool.h>
 
 unsigned short adc_test = 0;
+float value = 0;
 
 void roue_handler(char value) {
 	signed char valeur = value;
@@ -29,6 +32,7 @@ int main (void)
 	
 	GPIO_Set_Config(GPIOA, 9, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 	GPIO_Set_Config(GPIOA, 10, INPUT, I_FLOATING_INPUT);
+	/*Timer_Enable(TIM1, 548, 65535);*/
 	
 	USART_Enable(USART1, READ_WRITE);
 	USART_Set_Read_Handler(USART1, roue_handler);
@@ -37,6 +41,8 @@ int main (void)
 	
 	roue_handler(0);
 	
+	ADC_Enable(ADC1);
+	*/
 	/* Tests for GPIO Driver */
 	/*
 	GPIO_Set_Config(GPIOB, 0, INPUT, I_FLOATING_INPUT);
@@ -65,6 +71,7 @@ int main (void)
 	
 	char message[64];
 	
+	setup_girouette();
 	while (1)
 	{
 		unsigned short battery = ADC_Read_Wait(ADC1, 10);
@@ -72,6 +79,9 @@ int main (void)
 		sprintf(message, "Batterie: %hu\n", battery);
 		
 		USART_Send_String(USART1, message);
+		value = convert_to_degrees();
+		
+		//printf("%d\n", value);
 	}
 	
 }
