@@ -11,9 +11,8 @@ void Configure_GPIO(void) {
 	GPIO_Set_Config(GPIOA, 9, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 	GPIO_Set_Config(GPIOA, 10, INPUT, I_FLOATING_INPUT);
 
-
     // GPIO For Wheels
-	// Plateau Dir
+	// Plateau Dir  
 	GPIO_Set_Config(GPIOB, 0, OUTPUT_2MHZ, O_GPO_PUSH_PULL); 
     // Plateau PWM
 	GPIO_Set_Config(TIM2_CHANNEL_1_GPIO, TIM2_CHANNEL_1_PIN, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
