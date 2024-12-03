@@ -31,4 +31,7 @@ void Configure_GPIO(void) {
 	
 	// phase index : B0
 	GPIO_Set_Config(GPIOA, 0, INPUT, I_FLOATING_INPUT);
+
+    // GPIO For Sails
+	GPIO_Set_Config(TIM1_CHANNEL_1_GPIO, TIM1_CHANNEL_1_PIN, OUTPUT_2MHZ, O_ALTERNATE_GPO_PUSH_PULL);
 }

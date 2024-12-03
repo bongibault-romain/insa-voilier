@@ -7,11 +7,11 @@
 #include "girouette.h"
 #include "configuration.h"
 #include "battery.h"
+#include "sails.h"
 
 #include <stdio.h>
 #include <stdbool.h>
 
-unsigned short adc_test = 0;
 int value = 0;
 
 int main (void)
@@ -22,6 +22,7 @@ int main (void)
 	USART_Set_Read_Handler(USART1, Wheels_On_Receive);
 	
 	Wheels_Init(TIM2);
+	Sails_Enable(TIM1);
 	Girouette_Enable(TIM3);
 	Battery_Init(ADC1, 10);
 			
@@ -29,12 +30,14 @@ int main (void)
 	
 	while (1)
 	{
-		unsigned short battery = Battery_Read();
+		// unsigned short battery = Battery_Read();
 		
-		sprintf(message, "Batterie: %hu\n", battery);
+		// sprintf(message, "Batterie: %hu\n", battery);
 		
-		USART_Send_String(USART1, message);
+		// USART_Send_String(USART1, message);
+
 		value = Girouette_Get_Angle();
+		Sails_Set(value);
 		
 		//printf("%d\n", value);
 	}
