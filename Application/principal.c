@@ -13,6 +13,8 @@
 #include <stdbool.h>
 
 int value = 0;
+int value_firmin = 0;
+int battery = 1145;
 
 int main (void)
 {
@@ -28,19 +30,30 @@ int main (void)
 			
 	char message[64];
 	
+	int i = 0;
+	
 	while (1)
 	{
-		// unsigned short battery = Battery_Read();
+		battery = Battery_Read();
 		
-		// sprintf(message, "Batterie: %hu\n", battery);
-		
-		// USART_Send_String(USART1, message);
+		if (i == 1000000) {		
+			float voltage = ((float) (battery * 12)) / 1145;
+			if (battery <= 1049) {
+				sprintf(message, "La batterie est morte. (%.2f V)\n", voltage);
+			} else {
+				sprintf(message, "La batterie est pas morte. (%.2f V)\n", voltage);
+			}
+			
+			USART_Send_String(USART1, message);
+			i = 0;
+		}
 
 		value = Girouette_Get_Angle();
-		value = Angle_Giro_To_Angle_Sails(value);
-		Sails_Set(value);
+		value_firmin = Angle_Giro_To_Angle_Sails(value);
+		Sails_Set(value_firmin);
 		
 		//printf("%d\n", value);
+		i++;
 	}
 	
 }

@@ -5,6 +5,6 @@
 
 void Battery_Init(ADC_TypeDef * adc, char channel);
 
-char Battery_Read(void);
+int Battery_Read(void);
 
 #endif

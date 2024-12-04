@@ -17,8 +17,10 @@ void Sails_Set(int theta){
 
 int Angle_Giro_To_Angle_Sails (int theta_girouette){
 	int theta = 0;
-	if (theta_girouette > 45){
-		theta = ((90/135)*theta_girouette) - 30;
+	if ((theta_girouette > 45) && (theta_girouette <= 180)){
+		theta = ((90*theta_girouette)/135) - 30;
+	} else if (theta_girouette > 180){
+		theta = ((-1*theta_girouette)/2) + 180;
 	}
 	return theta;
 }

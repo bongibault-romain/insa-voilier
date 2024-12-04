@@ -6,7 +6,7 @@ void ADC_Enable(ADC_TypeDef *adc) {
 	if (adc == ADC1) {
 		RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
 	} else if (adc == ADC2) {
-		RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
+		RCC->APB2ENR |= RCC_APB2ENR_ADC2EN;
 	}
 	
 	adc->CR2 |= ADC_CR2_ADON;
