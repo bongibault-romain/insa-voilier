@@ -14,7 +14,7 @@ void Wheels_Init(TIM_TypeDef * timer) {
 }
 
 void Wheels_Set_Rotation_Direction(bool direction) {
-	GPIO_Set(GPIOB, 0, direction);
+	GPIO_Set(GPIOA, 11, direction);
 }
 
 void Wheels_Rotate(unsigned short valeur){

@@ -18,13 +18,13 @@ int main (void)
 {
 	Configure_GPIO();
 	
-	USART_Enable(USART1, READ_WRITE);
-	USART_Set_Read_Handler(USART1, Wheels_On_Receive);
-	
 	Wheels_Init(TIM2);
 	Sails_Enable(TIM1);
 	Girouette_Enable(TIM3);
 	Battery_Init(ADC1, 10);
+	
+	USART_Enable(USART1, READ_WRITE);
+	USART_Set_Read_Handler(USART1, Wheels_On_Receive);
 			
 	char message[64];
 	
