@@ -37,6 +37,7 @@ int main (void)
 		// USART_Send_String(USART1, message);
 
 		value = Girouette_Get_Angle();
+		value = Angle_Giro_To_Angle_Sails(value);
 		Sails_Set(value);
 		
 		//printf("%d\n", value);

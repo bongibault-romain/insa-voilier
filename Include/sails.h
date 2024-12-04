@@ -12,4 +12,6 @@ void Sails_Enable(TIM_TypeDef * timer);
 
 void Sails_Set(int theta);
 
+int Angle_Giro_To_Angle_Sails (int theta_girouette);
+
 #endif
